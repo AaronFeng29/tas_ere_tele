@@ -1,53 +1,43 @@
-import sys
 import numpy as np
-import scipy.stats as st
-import time
 from numba import jit, prange
 
-
-
 @jit(nopython=True, parallel=True)
-def EvSync_jit(e, nodes, noe, taumax, lookup_table, noep):
+def EvSync_jit(event1, nodes, noe, taumax, lookup_table, noep1):
     l = nodes * nodes
     Q = np.zeros(l, dtype=np.int32)
-    c = 0
     for i in prange(nodes):
         for k in prange(nodes):
             if i == k:
                 continue
             count = 0
-            li = 0  # 初始化 li
-            lk = 0  # 初始化 lk
-            for m in range(1, noep[i] - 1):
-                if e[i, m] > 0:
-                    li += 1
-                    for n in range(1, noep[k] - 1):
-                        if e[k, n] > 0:
-                            lk += 1
-                            dst = e[i, m] - e[k, n]
-                            if dst > 0:
+            for m in range(1, noep1[i] - 1):
+                if event1[i, m] > 0:
+                    for n in range(1, noep1[k] - 1):
+                        if event1[k, n] > 0:
+                            dst1 = event1[i, m] - event1[k, n]
+                            if dst1 > 0:
                                 continue
-                            tmp = e[i, m + 1] - e[i, m]
-                            if tmp > e[i, m] - e[i, m - 1]:
-                                tmp = e[i, m] - e[i, m - 1]
-                            tau = e[k, n + 1] - e[k, n]
-                            if tau > e[k, n] - e[k, n - 1]:
-                                tau = e[k, n] - e[k, n - 1]
-                            if tau > tmp:
-                                tau = tmp
-                            tau //= 2
-                            if abs(e[i, m] - e[k, n]) <= taumax and abs(e[i, m] - e[k, n]) < tau:
+                            tmp1 = event1[i, m + 1] - event1[i, m]
+                            if tmp1 > event1[i, m] - event1[i, m - 1]:
+                                tmp1 = event1[i, m] - event1[i, m - 1]
+                            tau1 = event1[k, n + 1] - event1[k, n]
+                            if tau1 > event1[k, n] - event1[k, n - 1]:
+                                tau1 = event1[k, n] - event1[k, n - 1]
+                            if tau1 > tmp1:
+                                tau1 = tmp1
+                            tau1 //= 2
+
+                            # print(noep[i], noep[k], e[i, m], e[k, n], dst, tau)
+                            if abs(dst1) <= taumax and abs(dst1) < tau1:
                                 count += 1
-                            if dst < -taumax:
+                                # if  dst1 != 0:
+                                #     print(i, k, dst1)
+                            if dst1 < -taumax:
                                 break
-            if li < 3:
-                q = 0
-            elif lk < 3:
-                q = 0
-            else:
-                q = count
-            e1 = noep[i]
-            e2 = noep[k]
+
+            q = count
+            e1 = noep1[i]
+            e2 = noep1[k]
             if e1 < e2:
                 e1, e2 = e2, e1
             # 直接从查找表中获取阈值
@@ -60,6 +50,7 @@ def EvSync_jit(e, nodes, noe, taumax, lookup_table, noep):
             else:
                 local_c = int(i * nodes + k)
                 Q[local_c] = 0
+            
     return Q
 
 
@@ -74,7 +65,7 @@ def EvSync(e, noe, nodes, perc, tm, P, noep):
         lookup_table[e1, e2] = threshold
     Q = EvSync_jit(e, nodes, noe, tm, lookup_table, noep)
     del e
-    np.save(f'./deseason/global_wd_perc{perc}_tm{tm}_nb_sig005_jit_dirc', Q)
+    np.save(f'./origin/global_wd_perc{perc}_tm{tm}_nb_sig005_jit_dirc_3', Q)
     print("Result saved.")
     del Q
     return 0
@@ -86,7 +77,7 @@ def master():
         print("Percentile:", perc)
         for tm in [30]:
             print("Time threshold:", tm)
-            dat = np.load('./deseason/global_wd_bursts_cor_tas_perc%d.npy' % perc)
+            dat = np.load('./origin/global_wd_bursts_cor_tas_perc%d.npy' % perc).astype((np.int32))
             # data_3d = data.reshape(73, 144, 393)
             # latitudes = np.linspace(90, -90, 73)
 
@@ -95,8 +86,8 @@ def master():
             # print(north_50_index,south_50_index)
             # subset_3d = data_3d[north_50_index:south_50_index + 1, :, :]
             # dat = subset_3d.reshape(-1, 393)
-            P = np.load('P_2000_3ms_mnoe393_thresholds_005_tm%d_jit_dirc.npy' % tm)
-            noep = np.load('./deseason/global_wd_nob_cor_tas_perc%d.npy' % perc)
+            P = np.load('P_2000_3ms_mnoe393_thresholds_005_tm%d_jit_dirc.npy' % tm).astype((np.int32))
+            noep = np.load('./origin/global_wd_nob_cor_tas_perc%d.npy' % perc).astype((np.int32))
             # noep_2d = noep1.reshape(73, 144)
             # noep1 = noep_2d[north_50_index:south_50_index + 1, :]
             # noep = noep1.reshape(-1)
