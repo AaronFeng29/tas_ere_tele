@@ -46,8 +46,8 @@ def process_quantile(data, perc):
     
     # 计算最大事件数并填充0
     max_events = max(len(e) for e in processed_events)
-    ev_nb = np.array([np.pad(e, (0, max_events - len(e))) for e in processed_events], dtype=np.uint16)
-    nob = np.array([len(e) for e in processed_events], dtype=np.uint16)
+    ev_nb = np.array([np.pad(e, (0, max_events - len(e))) for e in processed_events], dtype=np.int16)
+    nob = np.array([len(e) for e in processed_events], dtype=np.int16)
     
     return thresholds, events, ev_nb, nob
 
