@@ -97,21 +97,21 @@ def cal_deg_distance(adj_matrix):
     selected_distances2 = np.array(selected_distances2)
     selected_distances7 = np.array(selected_distances7)
     n50s50_distances = np.array(n50s50_distances)
-    np.save(f'origin/deg_selected6570_perc{perc}_tm30_nb_sig005_jit.npy', selected_deg2)
-    np.save(f'origin/dist_selected6570_perc{perc}_tm30_nb_sig005_jit.npy', selected_distances2)
-    np.save(f'origin/latdiff_selected6570_perc{perc}_tm30_nb_sig005_jit.npy', selected_lat_diff2)
-    np.save(f'origin/deg_selected726_perc{perc}_tm30_nb_sig005_jit.npy', selected_deg7)
-    np.save(f'origin/dist_selected726_perc{perc}_tm30_nb_sig005_jit.npy', selected_distances7)
-    np.save(f'origin/latdiff_selected726_perc{perc}_tm30_nb_sig005_jit.npy', selected_lat_diff7)
-    np.save(f'origin/deg_n50s50_perc{perc}_tm30_nb_sig005_jit.npy', n50s50_deg)
-    np.save(f'origin/dist_n50s50_perc{perc}_tm30_nb_sig005_jit.npy', n50s50_distances)
-    np.save(f'origin/latdiff_n50s50_perc{perc}_tm30_nb_sig005_jit.npy', n50s50_lat_diff)
-    np.save(f'origin/deg_perc{perc}_tm30_nb_sig005_jit.npy', deg)
-    np.save(f'origin/dist_perc{perc}_tm30_nb_sig005_jit.npy', distances)
-    np.save(f'origin/latdiff_perc{perc}_tm30_nb_sig005_jit.npy', lat_diff)
+    np.save(f'{data}/deg_selected6570_perc{perc}_tm30_nb_sig005_jit.npy', selected_deg2)
+    np.save(f'{data}/dist_selected6570_perc{perc}_tm30_nb_sig005_jit.npy', selected_distances2)
+    np.save(f'{data}/latdiff_selected6570_perc{perc}_tm30_nb_sig005_jit.npy', selected_lat_diff2)
+    np.save(f'{data}/deg_selected726_perc{perc}_tm30_nb_sig005_jit.npy', selected_deg7)
+    np.save(f'{data}/dist_selected726_perc{perc}_tm30_nb_sig005_jit.npy', selected_distances7)
+    np.save(f'{data}/latdiff_selected726_perc{perc}_tm30_nb_sig005_jit.npy', selected_lat_diff7)
+    np.save(f'{data}/deg_n50s50_perc{perc}_tm30_nb_sig005_jit.npy', n50s50_deg)
+    np.save(f'{data}/dist_n50s50_perc{perc}_tm30_nb_sig005_jit.npy', n50s50_distances)
+    np.save(f'{data}/latdiff_n50s50_perc{perc}_tm30_nb_sig005_jit.npy', n50s50_lat_diff)
+    np.save(f'{data}/deg_perc{perc}_tm30_nb_sig005_jit.npy', deg)
+    np.save(f'{data}/dist_perc{perc}_tm30_nb_sig005_jit.npy', distances)
+    np.save(f'{data}/latdiff_perc{perc}_tm30_nb_sig005_jit.npy', lat_diff)
     return n50s50_distances, selected_distances7, selected_distances2, distances
 
-def cal_deg_distance_dirc(adj_matrix):
+def cal_deg_distance_dirc(adj_matrix, perc):
     adj_matrix = adj_matrix.reshape([10512,10512])
     start_index, end_index = index_in_lat_s50_n50()
     selected_distances2 = []
@@ -163,23 +163,23 @@ def cal_deg_distance_dirc(adj_matrix):
     n50s50_distances = np.array(n50s50_distances)
     selected_distances7 = np.array(selected_distances7)
     selected_distances2 = np.array(selected_distances2)
-    np.save(f'origin/dist_perc{perc1}-{perc2}_tm30_nb_sig005_jit.npy',distances)
-    np.save(f'origin/in_deg_perc{perc1}-{perc2}_tm30_nb_sig005_jit.npy', in_deg)
-    np.save(f'origin/out_deg_perc{perc1}-{perc2}_tm30_nb_sig005_jit.npy', out_deg)
+    np.save(f'{data}/dist_perc{perc}_tm30_nb_sig005_jit_dirc.npy',distances)
+    np.save(f'{data}/in_deg_perc{perc}_tm30_nb_sig005_jit.npy', in_deg)
+    np.save(f'{data}/out_deg_perc{perc}_tm30_nb_sig005_jit.npy', out_deg)
    
-    np.save(f'origin/dist_selected6570_perc{perc1}-{perc2}_tm30_nb_sig005_jit.npy', selected_distances2)
-    np.save(f'origin/in_deg_selected6570_perc{perc1}-{perc2}_tm30_nb_sig005_jit.npy', selected_in_deg2)
-    np.save(f'origin/out_deg_selected6570_perc{perc1}-{perc2}_tm30_nb_sig005_jit.npy', selected_out_deg2)
+    np.save(f'{data}/dist_selected6570_perc{perc}_tm30_nb_sig005_jit_dirc.npy', selected_distances2)
+    np.save(f'{data}/in_deg_selected6570_perc{perc}_tm30_nb_sig005_jit.npy', selected_in_deg2)
+    np.save(f'{data}/out_deg_selected6570_perc{perc}_tm30_nb_sig005_jit.npy', selected_out_deg2)
     
-    np.save(f'origin/dist_selected726_perc{perc1}-{perc2}_tm30_nb_sig005_jit.npy', selected_distances7)
-    np.save(f'origin/in_deg_selected726_perc{perc1}-{perc2}_tm30_nb_sig005_jit.npy', selected_in_deg7)
-    np.save(f'origin/out_deg_selected726_perc{perc1}-{perc2}_tm30_nb_sig005_jit.npy', selected_out_deg7)
+    np.save(f'{data}/dist_selected726_perc{perc}_tm30_nb_sig005_jit_dirc.npy', selected_distances7)
+    np.save(f'{data}/in_deg_selected726_perc{perc}_tm30_nb_sig005_jit.npy', selected_in_deg7)
+    np.save(f'{data}/out_deg_selected726_perc{perc}_tm30_nb_sig005_jit.npy', selected_out_deg7)
     
-    np.save(f'origin/dist_n50s50_perc{perc1}-{perc2}_tm30_nb_sig005_jit.npy', n50s50_distances)
-    np.save(f'origin/in_deg_n50s50_perc{perc1}-{perc2}_tm30_nb_sig005_jit.npy', n50s50_in_deg)
-    np.save(f'origin/out_deg_n50s50_perc{perc1}-{perc2}_tm30_nb_sig005_jit.npy', n50s50_out_deg)
+    np.save(f'{data}/dist_n50s50_perc{perc}_tm30_nb_sig005_jit_dirc.npy', n50s50_distances)
+    np.save(f'{data}/in_deg_n50s50_perc{perc}_tm30_nb_sig005_jit.npy', n50s50_in_deg)
+    np.save(f'{data}/out_deg_n50s50_perc{perc}_tm30_nb_sig005_jit.npy', n50s50_out_deg)
     
-    return n50s50_distances, selected_distances7, selected_distances2, distances
+    return in_deg, out_deg, n50s50_distances, selected_distances7, selected_distances2, distances
 
 def cal_deg_distance_pn(adj_matrix1, adj_matrix2):
     adj_matrix1 = adj_matrix1.reshape([10512,10512])
@@ -194,7 +194,8 @@ def cal_deg_distance_pn(adj_matrix1, adj_matrix2):
     selected_deg7 = np.zeros(selected_index7.shape)
     selected_deg2 = np.zeros(selected_index2.shape)
     n50s50_deg = np.zeros(length)
-
+    in_deg = np.zeros(10512)
+    out_deg = np.zeros(10512)
     lat_diff = []
     selected_lat_diff2 = []
     selected_lat_diff7 = []
@@ -210,6 +211,8 @@ def cal_deg_distance_pn(adj_matrix1, adj_matrix2):
                 p1 = latlon_to_cartesian(*points[i], R)
                 p2 = latlon_to_cartesian(*points[k], R)
                 dist = spherical_distance(p1, p2, R)
+                out_deg[i] += 1
+                in_deg[k] += 1
                 if i > k:
                     marker[i, k] = 1
                 if marker[k, i] > 0:
@@ -245,21 +248,24 @@ def cal_deg_distance_pn(adj_matrix1, adj_matrix2):
     n50s50_distances = np.array(n50s50_distances)
     selected_distances7 = np.array(selected_distances7)
     selected_distances2 = np.array(selected_distances2)
-    np.save(f'origin/dist_pn_perc{perc1}-{perc2}_tm30_nb_sig005_jit.npy',distances)
-    np.save(f'origin/deg_pn_perc{perc1}-{perc2}_tm30_nb_sig005_jit.npy', deg)
-    np.save(f'origin/latdiff_pn_perc{perc1}-{perc2}_tm30_nb_sig005_jit.npy', lat_diff)
+    # np.save(f'{data}/dist_pn_perc{perc1}-{perc2}_tm30_nb_sig005_jit.npy',distances)
+    # np.save(f'{data}/deg_pn_perc{perc1}-{perc2}_tm30_nb_sig005_jit.npy', deg)
+    # np.save(f'{data}/latdiff_pn_perc{perc1}-{perc2}_tm30_nb_sig005_jit.npy', lat_diff)
     
-    np.save(f'origin/dist_pn_selected6570_perc{perc1}-{perc2}_tm30_nb_sig005_jit.npy', selected_distances2)
-    np.save(f'origin/deg_pn_selected6570_perc{perc1}-{perc2}_tm30_nb_sig005_jit.npy', selected_deg2)
-    np.save(f'origin/latdiff_selected6570_perc{perc1}-{perc2}_tm30_nb_sig005_jit.npy', selected_lat_diff2)
+    # np.save(f'{data}/dist_pn_selected6570_perc{perc1}-{perc2}_tm30_nb_sig005_jit.npy', selected_distances2)
+    # np.save(f'{data}/deg_pn_selected6570_perc{perc1}-{perc2}_tm30_nb_sig005_jit.npy', selected_deg2)
+    # np.save(f'{data}/latdiff_selected6570_perc{perc1}-{perc2}_tm30_nb_sig005_jit.npy', selected_lat_diff2)
     
-    np.save(f'origin/dist_pn_selected726_perc{perc1}-{perc2}_tm30_nb_sig005_jit.npy', selected_distances7)
-    np.save(f'origin/deg_pn_selected726_perc{perc1}-{perc2}_tm30_nb_sig005_jit.npy', selected_deg7)
-    np.save(f'origin/latdiff_selected726_perc{perc1}-{perc2}_tm30_nb_sig005_jit.npy', selected_lat_diff7)
+    # np.save(f'{data}/dist_pn_selected726_perc{perc1}-{perc2}_tm30_nb_sig005_jit.npy', selected_distances7)
+    # np.save(f'{data}/deg_pn_selected726_perc{perc1}-{perc2}_tm30_nb_sig005_jit.npy', selected_deg7)
+    # np.save(f'{data}/latdiff_selected726_perc{perc1}-{perc2}_tm30_nb_sig005_jit.npy', selected_lat_diff7)
     
-    np.save(f'origin/dist_pn_n50s50_perc{perc1}-{perc2}_tm30_nb_sig005_jit.npy', n50s50_distances)
-    np.save(f'origin/deg_pn_n50s50_perc{perc1}-{perc2}_tm30_nb_sig005_jit.npy', n50s50_deg)
-    np.save(f'origin/latdiff_pn_n50s50_perc{perc1}-{perc2}_tm30_nb_sig005_jit.npy', n50s50_lat_diff)
+    # np.save(f'{data}/dist_pn_n50s50_perc{perc1}-{perc2}_tm30_nb_sig005_jit.npy', n50s50_distances)
+    # np.save(f'{data}/deg_pn_n50s50_perc{perc1}-{perc2}_tm30_nb_sig005_jit.npy', n50s50_deg)
+    # np.save(f'{data}/latdiff_pn_n50s50_perc{perc1}-{perc2}_tm30_nb_sig005_jit.npy', n50s50_lat_diff)
+    
+    np.save(f'{data}/in_deg_perc{perc1}-{perc2}_tm30_nb_sig005_jit.npy', in_deg)
+    np.save(f'{data}/out_deg_perc{perc1}-{perc2}_tm30_nb_sig005_jit.npy', out_deg)
     
     return n50s50_distances, selected_distances7, selected_distances2, distances
 
@@ -301,8 +307,8 @@ def cu_deg_nlist(adj_matrix):
                 nlist[w] = k
                 positions[k] += 1
                 positions[i] += 1
-    np.save(f'origin/cu_deg_perc{perc}_tm30_nb_sig005_jit.npy', cu_deg)
-    np.save(f'origin/nlist_perc{perc}_tm30_nb_sig005_jit.npy', nlist)
+    np.save(f'{data}/cu_deg_perc{perc}_tm30_nb_sig005_jit.npy', cu_deg)
+    np.save(f'{data}/nlist_perc{perc}_tm30_nb_sig005_jit.npy', nlist)
     return cu_deg, nlist
 
 def draw_pdf(distances):
@@ -316,8 +322,8 @@ def draw_pdf(distances):
     
     loghist = np.histogram(distances, bins=bins, density = True)
     logx1 = loghist[1][:-1] + (loghist[1][1:] - loghist[1][:-1]) / 2.
-    # np.save(f'origin/dist_pdf_perc{perc1}-{perc2}_tm30.npy',loghist[0])
-    # np.save(f'origin/dist_pdf_logx_perc{perc1}-{perc2}_tm30.npy',logx1)
+    # np.save(f'{data}/dist_pdf_perc{perc1}-{perc2}_tm30.npy',loghist[0])
+    # np.save(f'{data}/dist_pdf_logx_perc{perc1}-{perc2}_tm30.npy',logx1)
     # bin_widths = np.diff(bin_edges)
     # pdf = counts / (len(distances) * bin_widths)
     # bin_centers = np.sqrt(bin_edges[:-1] * bin_edges[1:])
@@ -472,11 +478,11 @@ def draw_selected_deg(deg, lon, lat):
 R = 6371
 tm = 30
 # 点数
-n = 10512#5904
+n = 10512 # n50s50:5904
 perc = 97
 perc1 = 97
 perc2 = 2
-
+data = 'origin' # 'deseason
 
 indexarr2 = []
 f = open('../Resolution2.5')
@@ -501,12 +507,16 @@ while line:
     indexarr7.append(node_index[0])
 f.close()
 selected_index7 = np.array(indexarr7[:-1]).astype('int32')
-adj_matrix = np.load(f'./origin/global_wd_perc{perc}_tm30_nb_sig005_jit.npy')
-# adj_matrix = np.load('./origin/global_wd_perc97_tm30_nb_sig005_50jit.npy')
-adj_matrix1 = np.load(f'./origin/global_wd_perc{perc1}-{perc2}_tm{tm}_nb_sig005_jit_dirc.npy')
-adj_matrix2 = np.load(f'./origin/global_wd_perc{perc2}-{perc1}_tm{tm}_nb_sig005_jit_dirc.npy')
 
-# 生成所有点的经纬度
+
+
+
+# adj_matrix = np.load(f'./{data}/global_wd_perc{perc}_tm30_nb_sig005_jit.npy')
+adj_matrix = np.load(f'./{data}/global_wd_perc{perc1}_tm{tm}_nb_sig005_jit_dirc_3.npy').reshape([10512,10512])
+adj_matrix_t = np.load(f'./{data}/global_wd_perc{perc2}_tm30_nb_sig005_jit_dirc_3.npy').reshape([10512,10512])
+dat = np.load(f'./{data}/global_wd_bursts_cor_tas_perc{perc1}.npy')
+print(np.allclose(adj_matrix, adj_matrix.T))
+
 latitudes = np.linspace(90, -90, 73)
 longitudes = np.linspace(0, 360, 144, endpoint=False)
 latitudes1 = np.load('../lat.npy')
@@ -516,31 +526,5 @@ for lat in latitudes:
     for lon in longitudes:
         points.append((lat, lon))
 points = np.array(points)
-
-# cal_deg_distance(adj_matrix)
-cal_deg_distance_pn(adj_matrix1, adj_matrix2)
-# cu_deg, nlist = cu_deg_nlist(adj_matrix)
-# n50s50_distances, selected_distances7, selected_distances2, distances = cal_deg_distance_dirc(adj_matrix)
-# n50s50_distances, selected_distances7, selected_distances2, distances = cal_deg_distance(adj_matrix)
-# distances = np.load(f'origin/dist_perc{perc1}-{perc2}_tm30_nb_sig005_jit.npy')
-# distances = distances[distances>10]
-# distances = np.load(f'./origin/dist_perc{perc}_tm30_nb_sig005_jit.npy')
-# distances = np.load(f'./origin/dist_n50s50_perc{perc}_tm30_nb_sig005_jit.npy')
-# distances = np.load(f'origin/dist_selected726_perc{perc}_tm30_nb_sig005_jit.npy')
-# selectdistances, distances = cal_deg_distance(adj_matrix)
-# draw_pdf(distances)
-# draw_pdf(selectdistances)
-# deg = np.load(f'origin/deg_perc{perc}_tm30_nb_sig005_jit.npy').reshape([73,144])
-# draw_deg(deg,longitudes,latitudes)
-# deg = np.load(f'./origin/deg_perc{perc}_tm30_nb_sig005_jit.npy')
-# deg = np.load(f'origin/deg_n50s50_perc{perc}_tm30_nb_sig005_jit.npy')
-
-# in_deg = np.load(f'origin/in_deg_perc{perc1}-{perc2}_tm30_nb_sig005_jit.npy')
-# out_deg = np.load(f'origin/out_deg_perc{perc1}-{perc2}_tm30_nb_sig005_jit.npy')
-# print('min:', int(np.min(deg)), 'max:', int(np.max(deg)))
-
-# start_index, end_index = index_in_lat_s50_n50()
-# draw_n50s50_deg(deg, longitudes, latitudes)
-# draw_divergence(in_deg, out_deg, longitudes, latitudes)
-# deg = np.load(f'origin/deg_selected6570_perc{perc}_tm30_nb_sig005_jit.npy')
-# draw_selected_deg(deg,longitudes,latitudes)
+cal_deg_distance_dirc(adj_matrix, perc1)
+in_deg, out_deg, n50s50_distances, selected_distances7, selected_distances2, distances = cal_deg_distance_dirc(adj_matrix_t, perc2)
